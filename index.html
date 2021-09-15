@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
+
+<!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+<style>
+.error{
+   color: red;
+}
+body {
+    background-color: skyblue
+}
+</style>
+<body>
+   <div class="container">
+      <div class="col-md-6 mx-auto text-center">
+         <div class="header-title">
+            <h2 class="wv-heading--subtitle">
+              
+            </h2>
+         </div><br>
+      </div>
+      <div class="row">
+         <div class="col-md-4 mx-auto">
+            <div class="myform form ">
+               <form action="" method="post" name="login" id="registration">
+                  <div class="form-group" id="u_name">
+                     <input type="text" name="name"  class="form-control my-input" id="name" placeholder="Name">
+                  </div>
+                  <div class="form-group">
+                     <input type="email" name="email"  class="form-control my-input" id="email" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                     <input type="number" min="0" name="phone" id="phone"  class="form-control my-input" placeholder="Phone">
+                  </div>
+                  <div class="form-group"></div>
+                     <label for="birthday">Birthday:</label>
+                     <input type="date" id="birthday" name="birthday">
+                  </div>
+                  <div class="form-group">
+                     <label for="gender" id="gender">Gender:</label>
+                    <select name="gender" id="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                  </div>
+                    <p>Skill: </p>
+                    <input type="checkbox" id="skill" name="skill" value="python">
+                    <label for="skill1"> Python</label><br>
+                    <input type="checkbox" id="skill2" name="skill" value="asp">
+                    <label for="skill2"> ASP</label><br>
+                    <!-- <input type="checkbox" id="skill3" name="skill3" value="Boat">
+                    <label for="skill2"> I have a boat</label><br><br> -->
+                <div class="text-center ">
+                <button type="submit" id="button" class=" btn btn-block send-button tx-tfm">Save Contact To Phonebook</button>
+                </div>                
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+   <script>
+      $(function(){
+         var $registerform = $("#registration")
+         if ($registerform.length){
+            $registerform.validate({
+               rules:{
+                  name:{
+                     required: true
+                  },
+                  email:{
+                     required: true
+                  },
+                  gender:{
+                     required: true
+                  },
+                  phone:{
+                     required: true
+                  },
+                  birthday:{
+                     required: true
+                  },
+                  skill:{
+                     required: true
+                  }
+               },
+               messages:{
+                  name:{
+                     required: "name is required"
+                  },
+                  email:{
+                     required: "email is required"
+                  },
+                  phone:{
+                     required: "phone number is required"
+                  },
+                  gender:{
+                     required: "gender is required"
+                  },
+                  birthday:{
+                     required: "birthday is required"
+                  }
+               }
+            })
+         }
+      })
+      $(document).ready(function(){
+         $('#button').click(function() {
+            $.ajax({
+               type: "POST",
+               url: "index.asp",
+               data:  $("#registration").serialize(),
+               cache: false,
+               dataType: "html",
+               success: function(){
+                  alert("User added to phonebook");
+               },
+               error: function(){
+                  alert("no");
+               },
+               });
+            return false;
+         });
+      });      
+   </script>
+</body>
+</html>
